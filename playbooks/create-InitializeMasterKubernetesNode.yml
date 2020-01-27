@@ -24,14 +24,14 @@
        #sudo_user: kubernetes-host
 
      - name: Create kube directory 
-       shell: mkdir -p $HOME/.kube
+       shell: mkdir -p /home/kubernetes-host/.kube
        become: yes
        become_user: root  
        #sudo: true
        #sudo_user: kubernetes-host
 
-     - name: Change ownership of HOME/.kube
-       shell: chown -R kubernetes-host:kubernetes-host $HOME/.kube
+     - name: Change ownership of /home/kubernetes-host/.kube
+       shell: chown -R kubernetes-host:kubernetes-host /home/kubernetes-host/.kube
        become: yes
        become_user: root
 
@@ -41,12 +41,12 @@
        become_user: root
 
      - name: copy admin_conf file into kube_config directory 
-       shell: cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
+       shell: cp -i /etc/kubernetes/admin.conf /home/kubernetes-host/.kube/config
        #sudo: true
        #sudo_user: kubernetes-host
 
      - name: Change ownership of kube_config file 
-       shell: chown kubernetes-host:kubernetes-host $HOME/.kube/config 
+       shell: chown kubernetes-host:kubernetes-host /home/kubernetes-host/.kube/config 
        become: yes
        become_user: root
        #shell: chown $(id -u):$(id -g) $HOME/.kube/config 
@@ -61,4 +61,4 @@
      - name: Deploy a pod network to the cluster 
        shell: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml | tee kubeadm-calico.out
        #sudo: true
-       #sudo_user: kubernetes-host       
+       #sudo_user: kubernetes-host
