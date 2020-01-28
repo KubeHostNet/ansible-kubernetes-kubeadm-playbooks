@@ -12,6 +12,21 @@
 
   tasks:  
 
+     - name: install the latest version of firewalld
+       yum:
+         name: firewalld
+         state: latest
+
+     - name: Make sure the firewalld service is running
+       systemd:
+         state: started
+         name: firewalld
+
+     - name: enable service firewalld
+       systemd:
+         name: firewalld
+         enabled: yes
+
      - firewalld:
          port: 6443/tcp
          permanent: true

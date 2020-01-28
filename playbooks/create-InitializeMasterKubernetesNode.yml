@@ -55,6 +55,7 @@
 
      - name: Apply the RBAC config file to the cluster
        shell: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml | tee kubeadm-rbac-kdd.out
+       #shell: kubectl --insecure-skip-tls-verify apply -f ./rbac-kdd.yaml | tee kubeadm-rbac-kdd.out
        #sudo: true
        #sudo_user: kubernetes-host
 
