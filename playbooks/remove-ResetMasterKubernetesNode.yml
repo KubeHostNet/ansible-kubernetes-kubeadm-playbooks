@@ -1,0 +1,27 @@
+## Copyright 2020 Green River IT as described in LICENSE.txt distributed with this project on GitHub.  
+## Start at https://github.com/KubeHostNet/  
+
+# Kubernetes reset and cleanup steps for Master.  Might need to also add more steps to completely cleanup.
+- name: Remove Kubernetes on a Master node by resetting kubeadm and cleaning up after 
+  hosts: k8smaster
+  remote_user: kubernetes-host
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:  
+
+     - name: Reset kubeadm
+       shell: sudo kubeadm reset | tee kubeadm-reset.out
+       become: yes
+       become_user: root
+
+     - name: Remove /etc/kubernetes/   and all contents recursively
+       shell: sudo rm -R /etc/kubernetes/
+       become: yes
+       become_user: root
+
+     - name: Remove /home/kubernetes-host/.kube   and all contents recursively
+       shell: sudo rm -R /home/kubernetes-host/.kube
+       become: yes
+       become_user: root
