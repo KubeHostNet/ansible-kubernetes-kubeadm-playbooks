@@ -13,6 +13,8 @@
 
      - name: Apply the RBAC config file to the cluster
        shell: kubectl apply -f /home/kubernetes-host/pod-network-yaml/rbac-kdd.yaml | tee kubeadm-rbac-kdd.out
+       #kubectl apply -f pod-network-yaml/rbac-kdd.yaml | tee kubeadm-rbac-kdd.out
 
      - name: Deploy a pod network to the cluster 
        shell: kubectl apply -f /home/kubernetes-host/pod-network-yaml/calico.yaml | tee kubeadm-calico.out
+       #kubectl apply -f pod-network-yaml/calico.yaml | tee kubeadm-calico.out
