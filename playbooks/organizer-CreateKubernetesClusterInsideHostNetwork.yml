@@ -6,3 +6,4 @@
 ---
 - import_playbook: create-GenericProvisionKubernetesNodes.yml
 - import_playbook: create-InitializeMasterKubernetesNode.yml
+- import_playbook: create-NetworkingOnMasterKubernetesNode.yml
